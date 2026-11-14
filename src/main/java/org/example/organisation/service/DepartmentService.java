@@ -29,18 +29,24 @@ public class DepartmentService {
     }
 
     // Delete Department
-    public void deleteDepartment(Integer id) {
+    public void deleteDepartment(int id) {
         departmentRepository.deleteById(id);
     }
 
     // Find department by ID
-    public Department findDepartmentById(Integer id) {
+    public Department findDepartmentById(int id) {
         return departmentRepository.findById(id).orElse(null);
     }
 
-    // Find Department by ID
-    public List<Employee> findAllEmployeesByDepartment(Integer id) {
-        return emplo.findAll();
+    // Find Employees by Department ID
+    public List<Employee> findEmployeesByDepartmentId(int id) {
+        return departmentRepository.findByDepartmentId(id);
+    }
+
+    // Get older Employee by Department ID
+    public Employee findOldEmployeeByDepartmentId(int id) {
+        // Get the first employee in the oldest employee list
+        return departmentRepository.findOldestEmployee(id).getFirst(); // get(0) -> to get by id
     }
 
 }
